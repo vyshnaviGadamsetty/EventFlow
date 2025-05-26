@@ -1,6 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { GoogleLogin } from '@react-oauth/google';
 
 import { 
   ChevronLeft, 
@@ -45,6 +46,8 @@ const Index = () => {
   const [isHovering, setIsHovering] = useState(false);
   const [particles, setParticles] = useState([]);
   const [addButtonClicked, setAddButtonClicked] = useState(false);
+
+
 
   // Separate state for form inputs to fix typing issues
   const [eventTitle, setEventTitle] = useState('');
@@ -138,6 +141,46 @@ const handleDrop = (e, droppedOnDate) => {
     document.addEventListener('mousemove', handleMouseMove);
     return () => document.removeEventListener('mousemove', handleMouseMove);
   }, []);
+useEffect(() => {
+  const fetchPublicHolidays = async () => {
+    try {
+      const res = await fetch(
+        'https://www.googleapis.com/calendar/v3/calendars/en.indian%23holiday%40group.v.calendar.google.com/events?key=${import.meta.env.VITE_GOOGLE_API_KEY}`'
+      );
+      const data = await res.json();
+
+      const seen = new Set(); // To track duplicates
+      const holidays = [];
+
+      for (const item of data.items) {
+        const title = item.summary;
+        const date = new Date(item.start.date).toDateString();
+        const key = `${title}-${date}`;
+
+        if (!seen.has(key)) {
+          seen.add(key);
+          holidays.push({
+            id: `${item.id}_${date}`, // 👈 safer key
+            title,
+            date,
+            category: 'holiday',
+            color: 'bg-gradient-to-r from-yellow-400 to-yellow-600',
+            isHoliday: true
+          });
+        }
+      }
+
+      setCalendarEvents(prev => mergeAndDeduplicateEvents(prev, holidays));
+
+    } catch (e) {
+      console.error('Holiday API error', e);
+    }
+  };
+
+  fetchPublicHolidays();
+}, []);
+
+
 
   const monthNames = [
     'January', 'February', 'March', 'April', 'May', 'June',
@@ -243,7 +286,8 @@ const handleDrop = (e, droppedOnDate) => {
         eventsToAdd = generateRecurringEvents(baseEvent);
       }
 
-      setCalendarEvents(prev => [...prev, ...eventsToAdd]);
+      setCalendarEvents(prev => mergeAndDeduplicateEvents(prev, importedEvents));
+
     }
     
     handleCloseModal();
@@ -439,6 +483,72 @@ const handleNewEventClick = () => {
     setAddButtonClicked(false);
   }, 4000);
 };
+const fetchGoogleEvents = async (accessToken) => {
+  try {
+    const res = await fetch(
+      'https://www.googleapis.com/calendar/v3/calendars/primary/events?maxResults=10&orderBy=startTime&singleEvents=true&timeMin=' + new Date().toISOString(),
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      }
+    );
+
+    const data = await res.json();
+    const seen = new Set();
+    const importedEvents = [];
+
+    for (const item of data.items || []) {
+      const title = item.summary;
+      const date = new Date(item.start.date || item.start.dateTime).toDateString();
+      const key = `${title}-${date}`;
+      if (!seen.has(key)) {
+        seen.add(key);
+        importedEvents.push({
+          id: `${item.id}_${date}`, // safer unique id
+          title,
+          date,
+          category: 'google',
+          color: 'bg-gradient-to-r from-blue-400 to-blue-600',
+          isImported: true
+        });
+      }
+    }
+
+    setCalendarEvents(prev => [...prev, ...importedEvents]);
+
+  } catch (err) {
+    console.error("Error fetching Google Calendar events:", err);
+  }
+};
+const mergeAndDeduplicateEvents = (existingEvents, newEvents) => {
+  const uniqueKeys = new Set(existingEvents.map(e => `${e.title}-${e.date}`));
+  const filteredNewEvents = newEvents.filter(
+    e => !uniqueKeys.has(`${e.title}-${e.date}`)
+  );
+  return [...existingEvents, ...filteredNewEvents];
+};
+
+const requestCalendarAccess = () => {
+  if (!window.google || !window.google.accounts) {
+    console.error("Google API not loaded.");
+    return;
+  }
+
+  const client = window.google.accounts.oauth2.initTokenClient({
+    client_id: '169374321400-i8015ua55f7a5iiniiq67ovkmrg6rota.apps.googleusercontent.com',
+    scope: 'https://www.googleapis.com/auth/calendar.readonly',
+    callback: (response) => {
+      if (response.access_token) {
+        fetchGoogleEvents(response.access_token); // ✅ Already in your code
+      } else {
+        console.error("No access token received");
+      }
+    },
+  });
+
+  client.requestAccessToken();
+};
 
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900' : 'bg-gradient-to-br from-green-50 via-white to-emerald-50'} relative overflow-hidden`}>
@@ -531,7 +641,41 @@ const handleNewEventClick = () => {
               <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
                 Quick Stats
               </h3>
-              
+              <div className="mb-4">
+ <button
+  onClick={requestCalendarAccess}
+  className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-xl flex items-center gap-2"
+>
+  <span className="bg-white rounded-full p-1">
+    <svg
+      className="w-5 h-5"
+      viewBox="0 0 533.5 544.3"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill="#4285F4"
+        d="M533.5 278.4c0-17.8-1.4-35.6-4.2-52.8H272v99.7h146.9c-6.4 34.8-25.4 64.2-54.1 84.2v69h87.1c50.9-46.9 81.6-116 81.6-200.1z"
+      />
+      <path
+        fill="#34A853"
+        d="M272 544.3c73.5 0 135-24.3 180-66.1l-87.1-69c-24.2 16.2-55 25.6-92.9 25.6-71 0-131.1-47.9-152.6-112.3h-89.5v70.7c45.2 89.5 137.2 151.1 242.1 151.1z"
+      />
+      <path
+        fill="#FBBC04"
+        d="M119.4 322.5c-10.1-30.1-10.1-62.4 0-92.5v-70.7h-89.5C3.6 226.1 0 251.6 0 278.2s3.6 52.1 29.9 118.9l89.5-70.7z"
+      />
+      <path
+        fill="#EA4335"
+        d="M272 107.7c39.9 0 75.8 13.8 104.1 40.8l77.8-77.8C407 24.3 345.5 0 272 0 167.1 0 75.1 61.6 29.9 151.1l89.5 70.7C140.9 155.6 201 107.7 272 107.7z"
+      />
+    </svg>
+  </span>
+  <span>Import Google Calendar Events</span>
+</button>
+
+
+</div>
+
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Total Events</span>
