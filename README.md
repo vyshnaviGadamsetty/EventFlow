@@ -4,6 +4,7 @@
 **EventFlow** is a fully interactive and responsive event calendar application built with **React** and **Tailwind CSS**. It empowers users to effortlessly schedule, organize, and manage events with rich features like drag-and-drop, recurring events, real-time conflict detection, and more — all while looking sleek on any device.
 
 🔗 **Live Demo**: [event-flow-ten.vercel.app](https://event-flow-ten.vercel.app/)
+📂 **Video Link**: [Google Drive](https://drive.google.com/file/d/17aRrUHmVjnefREgJ5y_lalcGy_X0l9Fw/view?usp=drive_link)
 
 ---
 
@@ -21,26 +22,20 @@
 
 ---
 
-## ✨ Screenshots
-
-
-
-### ✨ Screenshots (Direct View)
+## ✨ Screenshots (Direct View)
 
 | Preview                    | Screenshot                                                                                                                                                                        |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🏠 **Home Page**           | ![Home](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/home.png?raw=true)                                               |
 | 🧑‍💻 **Login Page**       | ![Login](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/login.png?raw=true)                                             |
 | ➕ **View Event**           | ![View Event](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/view_day.png?raw=true)                                     |
-| 🕒 **View Hours**          | ![View Hours](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/view_hrs.png?raw=true)                                     |                               |
+| 🕒 **View Hours**          | ![View Hours](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/view_hrs.png?raw=true)                                     |
 | 🗂️ **Filter by Category** | ![Filter](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/search_with_cateogry.png?raw=true)                             |
 | 🔍 **Search Events**       | ![Search](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/events.png?raw=true)                                           |
 | 🌟 **Features Section**    | ![Features](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/feautures.png?raw=true)                                      |
 | ℹ️ **About Us**            | ![About](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/Screenshot%202025-05-26%20at%203.10.12%E2%80%AFPM.png?raw=true) |
 
-                    |
-
-
+---
 
 ## 🛠️ Tech Stack
 
@@ -53,7 +48,7 @@
 ## 🚀 Getting Started
 
 ```bash
-git clone https://github.com/yourusername/EventFlow.git
+git clone https://github.com/vyshnaviGadamsetty/EventFlow.git
 cd EventFlow
 npm install
 npm run dev
@@ -80,12 +75,13 @@ assets/
 
 ## 📌 Note
 
-This project is optimized for frontend internship assessments for FLAM and includes rich animation, clean UI, and real-world calendar features.
+This project is optimized for **frontend internship assessments for FLAM** and includes rich animation, clean UI, and real-world calendar features.
 
+---
 
 ## 👩‍💻 Author
 
-Vyshmavi Gadamsetty
-GitHub • Portfolio
+**Vyshnavi Gadamsetty**
+GitHub: [vyshnaviGadamsetty](https://github.com/vyshnaviGadamsetty)
 
 
