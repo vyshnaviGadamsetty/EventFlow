@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { 
   ChevronLeft, 
   ChevronRight, 
   Calendar,
-  
+  Home,
   PlusCircle,
   Sun,
   Moon,
@@ -16,7 +17,8 @@ import {
   Star,
   Heart,
   Coffee,
-  Briefcase
+  Briefcase,
+  MousePointer
 } from 'lucide-react';
 import EventModal from '../components/EventModal';
 import CustomCursor from '../components/CustomCursor';
@@ -26,6 +28,8 @@ import TodaysEvents from "../components/TodayEvents"
 import SearchAndFilter from '../components/SearchandFilter';
 import CalendarDay from '../components/Calendar';
 const Index = () => {
+  const navigate = useNavigate();
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showEventModal, setShowEventModal] = useState(false);
@@ -40,6 +44,7 @@ const Index = () => {
   const [cursorPos, setCursorPos] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
   const [particles, setParticles] = useState([]);
+  const [addButtonClicked, setAddButtonClicked] = useState(false);
 
   // Separate state for form inputs to fix typing issues
   const [eventTitle, setEventTitle] = useState('');
@@ -407,6 +412,34 @@ const navigateMonth = (direction) => {
   });
 };
 
+// Handle adding event to a specific date with smooth interaction
+const handleAddEventToDate = (date) => {
+  setSelectedDate(date);
+  setShowEventModal(true);
+  setEditingEvent(null);
+  resetEventForm();
+  
+  // Set add button clicked state and auto-hide after 4 seconds
+  setAddButtonClicked(true);
+  setTimeout(() => {
+    setAddButtonClicked(false);
+  }, 4000);
+};
+
+// Handle new event button click with timer
+const handleNewEventClick = () => {
+  setSelectedDate(new Date());
+  setShowEventModal(true);
+  setEditingEvent(null);
+  resetEventForm();
+  
+  // Set add button clicked state and auto-hide after 4 seconds
+  setAddButtonClicked(true);
+  setTimeout(() => {
+    setAddButtonClicked(false);
+  }, 4000);
+};
+
   return (
     <div className={`min-h-screen transition-all duration-500 ${isDarkMode ? 'bg-gradient-to-br from-gray-900 via-black to-gray-900' : 'bg-gradient-to-br from-green-50 via-white to-emerald-50'} relative overflow-hidden`}>
       {/* Custom Cursor */}
@@ -421,22 +454,35 @@ const navigateMonth = (direction) => {
       <FloatingParticles />
       
       {/* Navigation Header */}
+      
       <div className={`${isDarkMode ? 'bg-black/60' : 'bg-white/60'} backdrop-blur-xl border-b-2 ${isDarkMode ? 'border-green-400/30' : 'border-green-500/40'} sticky top-0 z-40`}>
         <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className={`w-12 h-12 bg-gradient-to-r ${isDarkMode ? 'from-green-400 to-emerald-500' : 'from-green-500 to-emerald-600'} rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300`}>
-                <Calendar className="w-6 h-6 text-black" />
-              </div>
-              <div>
-                <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
-                  EventFLow
-                </h1>
-                <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
-                  Manage your events with style
-                </p>
-              </div>
-            </div>
+           <div className="flex items-center space-x-4">
+             <button
+    onClick={() => navigate('/')}
+    className={`ml-4 p-2 rounded-lg transition duration-300 hover:scale-110 ${isDarkMode ? 'bg-white/10 hover:bg-white/20 text-green-400' : 'bg-black/10 hover:bg-black/20 text-green-600'}`}
+    title="Go to Home"
+  >
+    <Home className="w-5 h-5" />
+  </button>
+  <div className={`w-12 h-12 bg-gradient-to-r ${isDarkMode ? 'from-green-400 to-emerald-500' : 'from-green-500 to-emerald-600'} rounded-xl flex items-center justify-center transform hover:scale-110 transition-transform duration-300`}>
+    <Calendar className="w-6 h-6 text-black" />
+  </div>
+  
+  <div>
+    <h1 className={`text-2xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+      EventFlow
+    </h1>
+    <p className={`text-sm ${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>
+      Manage your events with style
+    </p>
+  </div>
+
+  {/* 🔙 Home Button */}
+ 
+</div>
+
             
             <div className="flex items-center space-x-4">
               <button
@@ -449,16 +495,16 @@ const navigateMonth = (direction) => {
               </button>
               
               <button
-                onClick={() => {
-                  setSelectedDate(new Date());
-                  setShowEventModal(true);
-                }}
-                className="bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600 text-black px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl"
+                onClick={handleNewEventClick}
+                className={`${addButtonClicked 
+                  ? 'bg-gradient-to-r from-emerald-500 to-green-600 scale-105 shadow-xl' 
+                  : 'bg-gradient-to-r from-green-400 to-emerald-500 hover:from-green-500 hover:to-emerald-600'
+                } text-black px-6 py-3 rounded-xl font-medium transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-xl`}
                 onMouseEnter={() => setIsHovering(true)}
                 onMouseLeave={() => setIsHovering(false)}
               >
                 <PlusCircle className="w-5 h-5 inline mr-2" />
-                New Event
+                {addButtonClicked ? 'Added!' : 'New Event'}
               </button>
             </div>
           </div>
@@ -480,14 +526,12 @@ const navigateMonth = (direction) => {
   getEventsForDate={getEventsForDate}
 />
 
-
-
-            
-            Quick Stats
+            {/* Quick Stats */}
             <div className={`${isDarkMode ? 'bg-black/40' : 'bg-white/40'} backdrop-blur-xl border-2 ${isDarkMode ? 'border-green-400/30' : 'border-green-500/40'} rounded-3xl p-6`}>
               <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
                 Quick Stats
               </h3>
+              
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className={`${isDarkMode ? 'text-gray-400' : 'text-gray-600'}`}>Total Events</span>
@@ -510,6 +554,39 @@ const navigateMonth = (direction) => {
                   <span className={`font-bold ${isDarkMode ? 'text-green-400' : 'text-green-600'}`}>
                     {calendarEvents.filter(event => event.isRecurring).length}
                   </span>
+                </div>
+              </div>
+            </div>
+
+            {/* New Instructions Box */}
+            <div className={`${isDarkMode ? 'bg-black/40' : 'bg-white/40'} backdrop-blur-xl border-2 ${isDarkMode ? 'border-green-400/30' : 'border-green-500/40'} rounded-3xl p-6`}>
+              <div className="flex items-center space-x-2 mb-4">
+                <MousePointer className={`w-5 h-5 ${isDarkMode ? 'text-green-400' : 'text-green-600'}`} />
+                <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'}`}>
+                  How to Use
+                </h3>
+              </div>
+              
+              <div className="space-y-3">
+                <div className={`p-3 ${isDarkMode ? 'bg-green-400/10 border border-green-400/20' : 'bg-green-500/10 border border-green-500/20'} rounded-xl`}>
+                  <ul className={`text-sm ${isDarkMode ? 'text-gray-300' : 'text-gray-700'} space-y-2`}>
+                    <li className="flex items-start space-x-2">
+                      <span className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-green-400' : 'bg-green-600'} mt-2 flex-shrink-0`}></span>
+                      <span><strong>Click</strong> any event to view, edit, or delete</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-green-400' : 'bg-green-600'} mt-2 flex-shrink-0`}></span>
+                      <span><strong>Drag & Drop</strong> events to reschedule</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-green-400' : 'bg-green-600'} mt-2 flex-shrink-0`}></span>
+                      <span><strong>Click +</strong> on any day to add new events</span>
+                    </li>
+                    <li className="flex items-start space-x-2">
+                      <span className={`w-2 h-2 rounded-full ${isDarkMode ? 'bg-green-400' : 'bg-green-600'} mt-2 flex-shrink-0`}></span>
+                      <span><strong>Double-click</strong> empty space to quick-add</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -578,8 +655,7 @@ const navigateMonth = (direction) => {
                   </div>
                 ))}
               </div>
-
-              {/* Calendar Grid */}
+ {/* Calendar Grid */}
               <div className="grid grid-cols-7 gap-2">
                 {getDaysInMonth(currentDate).map((day, index) => {
                   const dayEvents = getEventsForDate(calendarEvents, day.date);
@@ -668,3 +744,5 @@ const navigateMonth = (direction) => {
 };
 
 export default Index;
+              
+              
