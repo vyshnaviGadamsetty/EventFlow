@@ -372,7 +372,13 @@ const getEventsForDate = (calendarEvents, date) => {
     const [h, m] = time.split(":").map(Number);
     return h * 60 + m;
   };
-
+const handleEventMove = (eventId, newStartTime, newEndTime) => {
+  setCalendarEvents(prev => prev.map(event => 
+    event.id === eventId 
+      ? { ...event, time: newStartTime, endTime: newEndTime }
+      : event
+  ));
+};
   // Load event data when editing
   useEffect(() => {
     if (editingEvent) {
@@ -477,7 +483,7 @@ const navigateMonth = (direction) => {
 
 
             
-            {/* Quick Stats */}
+            Quick Stats
             <div className={`${isDarkMode ? 'bg-black/40' : 'bg-white/40'} backdrop-blur-xl border-2 ${isDarkMode ? 'border-green-400/30' : 'border-green-500/40'} rounded-3xl p-6`}>
               <h3 className={`text-xl font-bold ${isDarkMode ? 'text-white' : 'text-gray-900'} mb-4`}>
                 Quick Stats
@@ -508,7 +514,7 @@ const navigateMonth = (direction) => {
               </div>
             </div>
           </div>
-
+         
           {/* Main Calendar */}
           <div className="lg:col-span-3">
             <div className={`${isDarkMode ? 'bg-black/40' : 'bg-white/40'} backdrop-blur-xl border-2 ${isDarkMode ? 'border-green-400/30' : 'border-green-500/40'} rounded-3xl p-6`}>
@@ -602,7 +608,10 @@ const navigateMonth = (direction) => {
   isDarkMode={isDarkMode}
   handleDragOver={handleDragOver}    // Pass dragOver handler
   handleDrop={handleDrop}            // Pass drop handler
-  handleDragStart={handleDragStart}  // Pass dragStart handler
+  handleDragStart={handleDragStart} 
+   setEditingEvent={setEditingEvent}
+  handleDeleteEvent={handleDeleteEvent} 
+   onEventMove={handleEventMove} /// Pass dragStart handler
 />
 
 
