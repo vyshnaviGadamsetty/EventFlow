@@ -145,7 +145,7 @@ useEffect(() => {
   const fetchPublicHolidays = async () => {
     try {
       const res = await fetch(
-        'https://www.googleapis.com/calendar/v3/calendars/en.indian%23holiday%40group.v.calendar.google.com/events?key=${import.meta.env.VITE_GOOGLE_API_KEY}`'
+        (`https://www.googleapis.com/calendar/v3/calendars/en.indian%23holiday%40group.v.calendar.google.com/events?key=${import.meta.env.VITE_GOOGLE_API_KEY}`)
       );
       const data = await res.json();
 
