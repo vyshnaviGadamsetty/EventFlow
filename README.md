@@ -1,10 +1,11 @@
 
 # 📅 EventFlow
 
-**EventFlow** is a fully interactive and responsive event calendar application built with **React** and **Tailwind CSS**. It empowers users to effortlessly schedule, organize, and manage events with rich features like drag-and-drop, recurring events, real-time conflict detection, and more — all while looking sleek on any device.
+**EventFlow** is a fully interactive and responsive event calendar application built with **React** and **Tailwind CSS**. It empowers users to effortlessly schedule, organize, and manage events with rich features like drag-and-drop, recurring events, real-time conflict detection, Google Calendar integration, and more — all while looking sleek on any device.
 
 🔗 **Live Demo**: [event-flow-ten.vercel.app](https://event-flow-ten.vercel.app/)
-📂 **Video Link**: [Google Drive](https://drive.google.com/file/d/17aRrUHmVjnefREgJ5y_lalcGy_X0l9Fw/view?usp=drive_link)
+🎥 **Video Demo**: [Google Drive](https://drive.google.com/file/d/17aRrUHmVjnefREgJ5y_lalcGy_X0l9Fw/view?usp=drive_link)
+🌐 **GitHub**: [vyshnaviGadamsetty/EventFlow](https://github.com/vyshnaviGadamsetty/EventFlow)
 
 ---
 
@@ -18,11 +19,39 @@
 | 🖱️ **Drag-and-Drop Rescheduling** | Reschedule events visually with drag-and-drop and automatic placement.                    |
 | ⚠️ **Event Conflict Management**   | Detect and alert on schedule conflicts with real-time visual warnings.                    |
 | 🔍 **Event Filtering & Search**    | Find events quickly by name or category with dynamic filters.                             |
+| 🌐 **Google Calendar Integration** | Sync your Google Calendar to fetch and view personal or public events inside EventFlow.   |
 | 📱 **Responsive Design**           | Fully functional across mobile, tablet, and desktop views.                                |
 
 ---
+| Preview                         | Screenshot |
+| ------------------------------- | ---------- |
+| 🏠 **Home Page (Dark)**         | ![Home](https://github.com/vyshnaviGadamsetty/EventFlow/blob/4ca8a077f11e4365004605dc83486714b7ee19ad/src/assets/home.png) |
+| 🌅 **Home Page (Light)**        | ![Morning Home](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/also_lightmode_home.png) |
+| 🌟 **Features Section**         | ![Features](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/features.png) |
+| ℹ️ **About Us**                 | ![About](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/aboutus.png) |
+| 🧑‍💻 **Login Page**            | ![Login](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/login.png) |
+| 📆 **Today’s Events**           | ![Today Events](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/todayevents.png) |
+| ❌ **Conflict Message**             | ![Conflict Message](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/conflict.png) |
 
-## ✨ Screenshots (Direct View)
+| 👁️ **Show Events**             | ![Show Events](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/all_categories.png) |
+| ➕ **View Event**               | ![View Event](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/viewing.png) |
+| 🕒 **View Hours**               | ![View Hours](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/adjusting_schedules_inday.png) |
+| 🔍 **Public Events**           | ![Public Events](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/public_events.png) |
+
+--
+
+## 🔐 Google Calendar Authorization
+
+When connecting your Google Calendar for the first time:
+
+> ⚠️ A warning like **"This app isn’t verified"** might appear.
+> Just click **“Advanced”** ➝ then click **“Go to EventFlow (unsafe)”** or **"Trust EventFlow"**.
+> This is expected during development/testing and **your data remains private**.
+> Once authorized, you’ll be able to view **your personal events** and **public calendars** right within the app!
+
+---
+
+## ✨ Screenshots
 
 | Preview                    | Screenshot                                                                                                                                                                        |
 | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -40,8 +69,9 @@
 ## 🛠️ Tech Stack
 
 * **Frontend:** React.js, Tailwind CSS
+* **Auth & Calendar:** Google OAuth 2.0, Google Calendar API
 * **Icons:** Lucide React Icons
-* **State Management:** useState, useEffect
+* **State Management:** React Hooks (`useState`, `useEffect`)
 
 ---
 
@@ -54,7 +84,7 @@ npm install
 npm run dev
 ```
 
-> Make sure your environment supports **Vite** if you're using it as the bundler.
+> Make sure your environment supports **Vite** and you’ve configured your **Google API Client ID** and **API Key**.
 
 ---
 
@@ -75,13 +105,16 @@ assets/
 
 ## 📌 Note
 
-This project is optimized for **frontend internship assessments for FLAM** and includes rich animation, clean UI, and real-world calendar features.
+This project is optimized for **frontend internship assessments for FLAM** and includes:
+
+* Rich animations
+* Clean, intuitive UI
+* Real-world calendar features
+* Google Calendar integration (personal + public events)
 
 ---
 
 ## 👩‍💻 Author
 
 **Vyshnavi Gadamsetty**
-GitHub: [vyshnaviGadamsetty](https://github.com/vyshnaviGadamsetty)
-
-
+GitHub: [@vyshnaviGadamsetty](https://github.com/vyshnaviGadamsetty)
