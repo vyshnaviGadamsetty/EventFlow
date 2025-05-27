@@ -4,7 +4,7 @@
 **EventFlow** is a fully interactive and responsive event calendar application built with **React** and **Tailwind CSS**. It empowers users to effortlessly schedule, organize, and manage events with rich features like drag-and-drop, recurring events, real-time conflict detection, Google Calendar integration, and more — all while looking sleek on any device.
 
 🔗 **Live Demo**: [event-flow-ten.vercel.app](https://event-flow-ten.vercel.app/)
-🎥 **Video Demo**: [Google Drive](https://drive.google.com/file/d/17aRrUHmVjnefREgJ5y_lalcGy_X0l9Fw/view?usp=drive_link)
+🎥 **Video Demo**: [Google Drive](https://drive.google.com/file/d/1Z9Q1Y3P6O5vwHmiD4nFe8s4Z_r5D6dZ4/view?usp=sharing)
 🌐 **GitHub**: [vyshnaviGadamsetty/EventFlow](https://github.com/vyshnaviGadamsetty/EventFlow)
 
 ---
