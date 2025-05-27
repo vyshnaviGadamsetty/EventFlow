@@ -31,8 +31,7 @@
 | ℹ️ **About Us**                 | ![About](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/aboutus.png) |
 | 🧑‍💻 **Login Page**            | ![Login](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/login.png) |
 | 📆 **Today’s Events**           | ![Today Events](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/todayevents.png) |
-| ❌ **Conflict Message**             | ![Conflict Message](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/conflict.png) |
-
+| ❌ **Conflict Message**          | ![Conflict Message](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/conflict.png) |
 | 👁️ **Show Events**             | ![Show Events](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/all_categories.png) |
 | ➕ **View Event**               | ![View Event](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/viewing.png) |
 | 🕒 **View Hours**               | ![View Hours](https://github.com/vyshnaviGadamsetty/EventFlow/blob/359b66c1cf0b35e2f3e5862ed6f60eddb4b2a10b/src/assets/adjusting_schedules_inday.png) |
@@ -51,20 +50,6 @@ When connecting your Google Calendar for the first time:
 
 ---
 
-## ✨ Screenshots
-
-| Preview                    | Screenshot                                                                                                                                                                        |
-| -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 🏠 **Home Page**           | ![Home](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/home.png?raw=true)                                               |
-| 🧑‍💻 **Login Page**       | ![Login](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/login.png?raw=true)                                             |
-| ➕ **View Event**           | ![View Event](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/view_day.png?raw=true)                                     |
-| 🕒 **View Hours**          | ![View Hours](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/view_hrs.png?raw=true)                                     |
-| 🗂️ **Filter by Category** | ![Filter](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/search_with_cateogry.png?raw=true)                             |
-| 🔍 **Search Events**       | ![Search](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/events.png?raw=true)                                           |
-| 🌟 **Features Section**    | ![Features](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/feautures.png?raw=true)                                      |
-| ℹ️ **About Us**            | ![About](https://github.com/vyshnaviGadamsetty/EventFlow/blob/ac0af4d6003558deb727162c171eafe283e0bf0c/src/assets/Screenshot%202025-05-26%20at%203.10.12%E2%80%AFPM.png?raw=true) |
-
----
 
 ## 🛠️ Tech Stack
 
