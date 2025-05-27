@@ -7,6 +7,8 @@ import {
   AlertTriangle,
   Search,
   Clock,
+  Globe,
+  RefreshCw,
   Smartphone
 } from 'lucide-react';
 
@@ -79,6 +81,32 @@ const Features = ({ isDarkMode, isHovering, setIsHovering, cursorPos }) => {
         "Filter events by categories",
         "Dynamic filtering as you type",
         "Advanced search options"
+      ]
+    },
+   {
+      icon: <RefreshCw className="w-8 h-8" />,
+      title: "Google Calendar Integration",
+      description: "Seamless two-way synchronization with your Google Calendar account",
+      details: [
+        "Connect and sync with your Google Calendar",
+        "View Google Calendar events in EventFlow",
+        "Create events that appear in both platforms",
+        "Real-time bidirectional synchronization",
+        "Import existing Google Calendar events",
+        "Export EventFlow events to Google Calendar"
+      ]
+    },
+    {
+      icon: <Globe className="w-8 h-8" />,
+      title: "Public Events Integration",
+      description: "Discover and integrate public events from Google Calendar API",
+      details: [
+        "Browse public events and holidays",
+        "Integrate local community events",
+        "Access regional and national holidays",
+        "Subscribe to public event feeds",
+        "Filter public events by category and location",
+        "Add public events directly to your calendar"
       ]
     },
     {
